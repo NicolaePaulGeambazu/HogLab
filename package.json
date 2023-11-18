@@ -22,7 +22,9 @@
   },
   "scripts": {
     "start": "react-scripts start",
+    "start-backend": "npx @hedgehoglab/frontend-tech-test-server@latest",
     "build": "react-scripts build",
+    "dev": "npm run start-backend",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
