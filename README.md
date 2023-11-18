@@ -23,4 +23,4 @@ different terminal : npx @hedgehoglab/frontend-tech-test-server@latest
 
     - react.js
     - react-router-dom
-    - typescript
+    - typescript# HogLab
