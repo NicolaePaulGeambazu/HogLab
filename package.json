@@ -21,7 +21,9 @@
     "typescript": "^3.7.5"
   },
   "scripts": {
-    "start": "react-scripts start",
+    "start": "npm run start-both",
+    "start-both": "concurrently \"npm run start-frontend\" \"npm run start-backend\"",
+    "start-frontend": "react-scripts start",
     "start-backend": "npx @hedgehoglab/frontend-tech-test-server@latest",
     "build": "react-scripts build",
     "dev": "npm run start-backend",
@@ -42,5 +44,8 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "concurrently": "^8.2.2"
   }
 }

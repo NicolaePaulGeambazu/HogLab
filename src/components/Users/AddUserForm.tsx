@@ -18,12 +18,9 @@ const AddUserForm = ({ onAddUser } : AddUserFormProps) => {
   const [email, setEmail] = useState("");
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
-  const [avatar, setAvatar] = useState("");
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [isError, setIsError] = useState(false);
   const { post, loading } = useFetch("http://localhost:3002");
-
-  const token = localStorage.getItem('userToken');
 
   const submitHandler = (e: React.SyntheticEvent) => {
     e.preventDefault();
@@ -67,7 +64,6 @@ const AddUserForm = ({ onAddUser } : AddUserFormProps) => {
     if (name === "email") setEmail(value);
     if (name === "firstName") setFirstName(value);
     else if (name === "lastName") setLastName(value);
-    else if (name === "avatar") setAvatar(value);
   };
 
   return (

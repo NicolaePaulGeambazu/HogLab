@@ -4,7 +4,7 @@ import useRetrieveRespData from "../../customHooks/useRetrieveRespData";
 import Modal from "../../components/Modal";
 import Header from "../../components/Header";
 import Button from "../../components/Button";
-import { Container, InlineLink, Title, FormWrapper, Error, PasswordError, DataEntry, Label } from "./Signup.styles";
+import { Container, InlineLink, Title, FormWrapper, Error, DataEntry, Label } from "./Signup.styles";
 import { CheckIfAccount } from "../../components/Components.styles";
 
 const Signup: React.FC = () => {

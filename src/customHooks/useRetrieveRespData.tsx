@@ -1,7 +1,5 @@
 import { useState } from "react";
 import useFetch from "./useFetch";
-import { error } from "console";
-
 interface User {
   avatar: string;
   email: string;
@@ -33,14 +31,6 @@ const useRetrieveRespData = () => {
     password?: string,
     password_confirmation?: string
   ) => {
-    const headers = token
-      ? {
-          Authorization: `Bearer ${token}`,
-          "Content-Type": "application/json",
-        }
-      : {
-          "Content-Type": "application/json",
-        };
     if (endpoint === "/api/register" && email && password && firstName && lastName && password_confirmation) {
       // Handle registration endpoint
       post<RetrieveRespData>(endpoint, {
