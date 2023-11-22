@@ -7,8 +7,3 @@
     from = "/*"
     to="/index.html"
     status = 200
-
-[[redirects]]
-  from = "/apiredirect/*"
-  to = "http://localhost:3002"
-  status = 200
