@@ -17,7 +17,7 @@ In the project directory, you can run:
 
 npm i
 npm run start
-different terminal : npx @hedgehoglab/frontend-tech-test-server@latest
+different terminal: npx @hedgehoglab/frontend-tech-test-server@latest
 
 # Technologies:
 
