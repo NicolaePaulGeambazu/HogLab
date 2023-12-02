@@ -29,7 +29,7 @@ const Login: React.FC = () => {
     const password = target.password.value;
 
     if (!(email && password)) return;
-    fetchData("/api/login", undefined, undefined, email, password, undefined);
+    fetchData("/api/login", { email, password });
   };
 
   const changeHandler = (e: React.FormEvent<HTMLInputElement>) => {

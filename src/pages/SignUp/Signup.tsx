@@ -30,7 +30,7 @@ const Signup = () => {
 
     if (!(email && password) || password !== passwordConfirmation) return;
 
-    fetchData("/api/register", firstName, lastName, email, password, passwordConfirmation);
+    fetchData("/api/register", {firstName, lastName, email, password, password_confirmation: passwordConfirmation});
   };
 
   const changeHandler = (e: React.FormEvent<HTMLInputElement>) => {
