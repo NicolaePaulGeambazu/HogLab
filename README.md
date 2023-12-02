@@ -1,7 +1,3 @@
-# Project Link:
-
-   https://engineer-team-kgrnz5wpl-nicolaepaulgeambazu.vercel.app/login
-
 # Authenticate functionality:
 
     - Log in
