@@ -14,7 +14,6 @@ const capitalizeFirstLetter = (str: string) => {
 };
 
 const UserCard = ({ user, onDelete } : UserProps) => {
-  console.log(user);
   return (
     <ContainerUsers>
       <Image

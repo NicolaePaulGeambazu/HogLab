@@ -66,7 +66,6 @@ const useRetrieveRespData = () => {
   
     const handleResponse = (json: RetrieveRespData) => {
       setData(json);
-      console.log(json);
       if (!json || json?.statusCode === 422) {
         setStatus("failed");
       } else {

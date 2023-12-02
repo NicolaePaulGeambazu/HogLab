@@ -7,12 +7,15 @@ import Button from "../../components/Button";
 import { Container, InlineLink, Title, FormWrapper, Error, DataEntry, Label } from "./Signup.styles";
 import { CheckIfAccount } from "../../components/Components.styles";
 
-const Signup: React.FC = () => {
-  const [email, setEmail] = useState("");
-  const [firstName, setFirstName] = useState("");
-  const [lastName, setLastName] = useState("");
-  const [password, setPassword] = useState("");
-  const [passwordConfirmation, setPasswordConfirmation] = useState("");
+const Signup = () => {
+  const [formValue, setFormValue] = useState({
+    email: '',
+    firstName: '',
+    lastName: '',
+    password: '',
+    passwordConfirmation: '',
+  });
+
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [isModal, setIsModal] = useState(false);
   const { isLoading, fetchData, status, responseData } = useRetrieveRespData();
@@ -23,29 +26,16 @@ const Signup: React.FC = () => {
 
     setIsSubmitted(true);
 
-    const target = e.target as typeof e.target & {
-      firstName: {value: string};
-      lastName: {value: string};
-      email: { value: string };
-      password: { value: string };
-      password_confirmation: { value: string };
-    };
-    const email = target.email.value;
-    const password = target.password.value;
-    const passwordConfirmationtarget = target.password_confirmation.value;
+    const { email, password, passwordConfirmation, firstName, lastName } = formValue;
 
-    if (!(email && password) || password !== passwordConfirmationtarget) return;
+    if (!(email && password) || password !== passwordConfirmation) return;
 
-    fetchData("/api/register", firstName, lastName, email, password, passwordConfirmationtarget );
+    fetchData("/api/register", firstName, lastName, email, password, passwordConfirmation);
   };
 
   const changeHandler = (e: React.FormEvent<HTMLInputElement>) => {
     const { name, value } = e.target as HTMLInputElement;
-    if (name === "email") setEmail(value);
-    else if (name === "password") setPassword(value);
-    else if (name === "password_confirmation") setPasswordConfirmation(value);
-    else if (name === 'firstName') setFirstName(value);
-    else if (name === 'lastName') setLastName(value);
+    setFormValue((prevFormValue) => ({ ...prevFormValue, [name]: value }));
   };
 
   const modalHandler = () => {
@@ -65,6 +55,8 @@ const Signup: React.FC = () => {
     return <Navigate to="/users" replace />;
   }
 
+  const { email, password, passwordConfirmation, firstName, lastName } = formValue;
+
   return (
     <Container>
       {isModal && status === "succeed" && (
@@ -78,9 +70,9 @@ const Signup: React.FC = () => {
         </Modal>
       )}
       <Header />
-        <Title>Create your Engineer account</Title>
+      <Title>Create your Engineer account</Title>
       <form name="form" onSubmit={submitHandler}>
-      <FormWrapper>
+        <FormWrapper>
           <Label htmlFor="firstName">First name</Label>
           <DataEntry
             type="text"
@@ -89,27 +81,23 @@ const Signup: React.FC = () => {
             onChange={changeHandler}
           />
           {isSubmitted && !firstName && (
-            <Error>
-              Please enter a valid first name
-            </Error>
+            <Error>Please enter a valid first name</Error>
           )}
         </FormWrapper>
         <FormWrapper>
-          <Label htmlFor="lastName"> Last Name</Label>
+          <Label htmlFor="lastName">Last Name</Label>
           <DataEntry
-            type="type"
+            type="text"
             name="lastName"
             value={lastName}
             onChange={changeHandler}
           />
           {isSubmitted && !lastName && (
-            <Error>
-              Please enter a valid last name
-            </Error>
+            <Error>Please enter a valid last name</Error>
           )}
         </FormWrapper>
         <FormWrapper>
-          <Label htmlFor="email"> Email address</Label>
+          <Label htmlFor="email">Email address</Label>
           <DataEntry
             type="email"
             name="email"
@@ -117,9 +105,7 @@ const Signup: React.FC = () => {
             onChange={changeHandler}
           />
           {isSubmitted && !email && (
-            <Error>
-              Please enter a valid email address
-            </Error>
+            <Error>Please enter a valid email address</Error>
           )}
         </FormWrapper>
         <FormWrapper>
@@ -135,17 +121,15 @@ const Signup: React.FC = () => {
           )}
         </FormWrapper>
         <FormWrapper>
-          <Label htmlFor="password_confirmation">Confirm Password</Label>
+          <Label htmlFor="passwordConfirmation">Confirm Password</Label>
           <DataEntry
             type="password"
-            name="password_confirmation"
+            name="passwordConfirmation"
             value={passwordConfirmation}
             onChange={changeHandler}
           />
           {isSubmitted && !passwordConfirmation && (
-            <Error className="error-block password_confirmation">
-              Retype password is required
-            </Error>
+            <Error>Retype password is required</Error>
           )}
           {isSubmitted && passwordConfirmation !== password && (
             <Error>Passwords don't match</Error>
